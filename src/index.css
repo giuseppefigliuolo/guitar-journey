@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Bebas Neue', ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand-50: #fef7ec;
+  --color-brand-100: #fceacc;
+  --color-brand-200: #f9d494;
+  --color-brand-300: #f5b54e;
+  --color-brand-400: #f2a028;
+  --color-brand-500: #e88a10;
+  --color-brand-600: #cc680a;
+  --color-brand-700: #a9490c;
+  --color-brand-800: #8a3910;
+  --color-brand-900: #712f10;
+
+  --color-surface-50: #fdfcfa;
+  --color-surface-100: #f7f5f2;
+  --color-surface-200: #eeebe6;
+  --color-surface-300: #e0dbd4;
+  --color-surface-400: #b5aea5;
+  --color-surface-500: #8a8279;
+  --color-surface-600: #6b6358;
+  --color-surface-700: #504a42;
+  --color-surface-800: #38332d;
+  --color-surface-900: #231f1b;
+  --color-surface-950: #141210;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-surface-100);
+  color: var(--color-surface-900);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(232, 138, 16, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(168, 85, 247, 0.04) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+::selection {
+  background-color: var(--color-brand-500);
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-surface-200);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-400);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-surface-500);
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(232, 138, 16, 0.4); }
+  50% { box-shadow: 0 0 20px 4px rgba(232, 138, 16, 0.2); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out both;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s ease-out both;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+.stagger-7 { animation-delay: 0.7s; }
