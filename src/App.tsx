@@ -4,8 +4,11 @@ import Dashboard from './pages/Dashboard'
 import LessonView from './pages/LessonView'
 import ChordLibrary from './pages/ChordLibrary'
 import TrainerPage from './pages/TrainerPage'
+import { useVersionCheck } from './hooks/useVersionCheck'
 
 export default function App() {
+  useVersionCheck()
+
   return (
     <HashRouter>
       <Routes>
