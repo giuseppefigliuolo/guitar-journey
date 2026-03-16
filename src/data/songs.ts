@@ -33,20 +33,20 @@ export const songs: Song[] = [
     sections: [
       {
         name: 'Intro',
-        chords: [ch('Em', 8), ch('Dsus2', 8), ch('Em', 8), ch('Dsus2', 8)],
+        chords: [ch('Em', 8), ch('D', 8), ch('Em', 8), ch('D', 8)],
       },
       {
         name: 'Strofa',
         chords: [
-          ch('Em'), ch('Dsus2'), ch('Em'), ch('Dsus2'),
-          ch('Em'), ch('Dsus2'), ch('Em'), ch('Dsus2'),
+          ch('Em'), ch('D'), ch('Em'), ch('D'),
+          ch('Em'), ch('D'), ch('Em'), ch('D'),
         ],
       },
       {
         name: 'Ritornello',
         chords: [
-          ch('Em'), ch('Dsus2'), ch('Em'), ch('Dsus2'),
-          ch('Em'), ch('Dsus2'), ch('Em'), ch('Dsus2'),
+          ch('Em'), ch('D'), ch('Em'), ch('D'),
+          ch('Em'), ch('D'), ch('Em'), ch('D'),
         ],
       },
     ],
