@@ -4,6 +4,7 @@ import Dashboard from './pages/Dashboard'
 import LessonView from './pages/LessonView'
 import ChordLibrary from './pages/ChordLibrary'
 import TrainerPage from './pages/TrainerPage'
+import SongsPage from './pages/SongsPage'
 import { useVersionCheck } from './hooks/useVersionCheck'
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/lezione/:day" element={<LessonView />} />
           <Route path="/trainer" element={<TrainerPage />} />
+          <Route path="/canzoni" element={<SongsPage />} />
           <Route path="/accordi" element={<ChordLibrary />} />
         </Route>
       </Routes>
