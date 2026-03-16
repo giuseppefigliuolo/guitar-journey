@@ -34,11 +34,11 @@ export default function ChordLibrary() {
   return (
     <div className="max-w-5xl mx-auto">
       {/* Header */}
-      <header className="mb-8 animate-fade-in">
-        <h1 className="font-display text-4xl sm:text-5xl tracking-wide mb-2">
+      <header className="mb-6 sm:mb-8 animate-fade-in">
+        <h1 className="font-display text-3xl sm:text-5xl tracking-wide mb-2">
           LIBRERIA ACCORDI
         </h1>
-        <p className="text-surface-500 text-lg">
+        <p className="text-surface-500 text-base sm:text-lg">
           Tutti gli accordi del corso — clicca per ascoltare il suono
         </p>
       </header>
@@ -109,7 +109,7 @@ export default function ChordLibrary() {
               <button
                 key={f.value}
                 onClick={() => setTypeFilter(f.value)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all whitespace-nowrap ${
+                className={`px-3.5 py-2 rounded-lg text-xs font-medium transition-all whitespace-nowrap min-h-[40px] ${
                   typeFilter === f.value
                     ? 'bg-brand-500 text-white shadow-sm'
                     : 'bg-white text-surface-500 border border-surface-200 hover:border-surface-300'

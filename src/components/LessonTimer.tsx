@@ -127,11 +127,10 @@ export default function LessonTimer({ durationMinutes }: LessonTimerProps) {
           </span>
         </div>
 
-        <div className="flex items-center gap-5">
+        <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-5">
           {/* Circular progress */}
           <div className="relative shrink-0">
             <svg width="120" height="120" viewBox="0 0 120 120" className="-rotate-90">
-              {/* Background circle */}
               <circle
                 cx="60"
                 cy="60"
@@ -140,7 +139,6 @@ export default function LessonTimer({ durationMinutes }: LessonTimerProps) {
                 stroke="#eeebe6"
                 strokeWidth="6"
               />
-              {/* Progress circle */}
               <circle
                 cx="60"
                 cy="60"
@@ -167,11 +165,11 @@ export default function LessonTimer({ durationMinutes }: LessonTimerProps) {
           </div>
 
           {/* Controls */}
-          <div className="flex flex-col gap-2 flex-1">
+          <div className="flex flex-col gap-2 w-full sm:flex-1">
             <button
               onClick={toggle}
               disabled={isFinished}
-              className={`flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl font-semibold text-sm transition-all ${
+              className={`flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold text-sm transition-all min-h-[44px] ${
                 isFinished
                   ? 'bg-green-50 text-green-500 border border-green-200 cursor-default'
                   : isRunning
@@ -199,7 +197,7 @@ export default function LessonTimer({ durationMinutes }: LessonTimerProps) {
 
             <button
               onClick={reset}
-              className="flex items-center justify-center gap-2 py-2 px-4 rounded-xl text-xs font-medium text-surface-400 hover:text-surface-600 hover:bg-surface-100 transition-all"
+              className="flex items-center justify-center gap-2 py-2 px-4 rounded-xl text-xs font-medium text-surface-400 hover:text-surface-600 hover:bg-surface-100 transition-all min-h-[44px]"
             >
               <RotateCcw size={14} />
               Reset

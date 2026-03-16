@@ -156,7 +156,7 @@ export default function ChordTrainer({ chordIds }: ChordTrainerProps) {
         </div>
         <button
           onClick={() => setVoiceEnabled((v) => !v)}
-          className="p-1.5 rounded-lg hover:bg-surface-100 transition-colors"
+          className="p-2.5 -m-1 rounded-lg hover:bg-surface-100 transition-colors"
           title={voiceEnabled ? 'Disattiva voce' : 'Attiva voce'}
         >
           {voiceEnabled ? (
@@ -263,7 +263,7 @@ export default function ChordTrainer({ chordIds }: ChordTrainerProps) {
       <div className="px-4 pb-4">
         <button
           onClick={toggle}
-          className={`w-full py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98] ${
+          className={`w-full py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98] min-h-[48px] ${
             isPlaying
               ? 'bg-red-50 text-red-500 border border-red-200 hover:bg-red-100'
               : 'bg-brand-500 text-white hover:bg-brand-600 shadow-sm'

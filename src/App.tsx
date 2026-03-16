@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
 import Layout from './components/Layout'
 import Dashboard from './pages/Dashboard'
 import LessonView from './pages/LessonView'
@@ -6,7 +6,7 @@ import ChordLibrary from './pages/ChordLibrary'
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Dashboard />} />
@@ -14,6 +14,6 @@ export default function App() {
           <Route path="/accordi" element={<ChordLibrary />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   )
 }

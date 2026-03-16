@@ -19,11 +19,11 @@ export default function Dashboard() {
   return (
     <div className="max-w-4xl mx-auto">
       {/* Hero */}
-      <header className="text-center mb-12 animate-fade-in">
-        <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl tracking-wide mb-3">
+      <header className="text-center mb-8 sm:mb-12 animate-fade-in">
+        <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl tracking-wide mb-2 sm:mb-3">
           GUITAR <span className="text-brand-500">JOURNEY</span>
         </h1>
-        <p className="text-surface-500 text-lg sm:text-xl max-w-lg mx-auto">
+        <p className="text-surface-500 text-base sm:text-xl max-w-lg mx-auto">
           Il tuo percorso di 30 giorni per imparare la chitarra
         </p>
       </header>

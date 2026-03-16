@@ -104,39 +104,36 @@ export default function LessonView() {
       {/* Back nav */}
       <Link
         to="/"
-        className="inline-flex items-center gap-2 text-sm text-surface-400 hover:text-surface-600 transition-colors mb-6"
+        className="inline-flex items-center gap-2 text-sm text-surface-400 hover:text-surface-600 transition-colors mb-6 py-2 -ml-1 pl-1 min-h-[44px]"
       >
         <ArrowLeft size={16} />
         Dashboard
       </Link>
 
       {/* Header */}
-      <header className="mb-8 animate-fade-in">
-        <div className="flex items-center gap-3 mb-2">
+      <header className="mb-6 sm:mb-8 animate-fade-in">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-2">
           <span className="text-xs font-bold uppercase tracking-widest text-brand-500">
             Giorno {lesson.day}
           </span>
-          <span className="text-surface-300">|</span>
+          <span className="text-surface-300 hidden sm:inline">|</span>
           <span className="text-xs text-surface-400">Settimana {lesson.week}</span>
-          <span className="text-surface-300">|</span>
+          <span className="text-surface-300 hidden sm:inline">|</span>
           <span className="inline-flex items-center gap-1 text-xs text-surface-400">
             <Clock size={12} />
             {lesson.duration}
           </span>
           {lesson.isRestDay && (
-            <>
-              <span className="text-surface-300">|</span>
-              <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-blue-50 text-blue-500 font-medium border border-blue-200">
-                PRATICA LIBERA
-              </span>
-            </>
+            <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-blue-50 text-blue-500 font-medium border border-blue-200">
+              PRATICA LIBERA
+            </span>
           )}
         </div>
-        <h1 className="font-display text-4xl sm:text-5xl tracking-wide mb-2">
-          <span className="mr-3">{lesson.icon}</span>
+        <h1 className="font-display text-3xl sm:text-4xl md:text-5xl tracking-wide mb-2">
+          <span className="mr-2 sm:mr-3">{lesson.icon}</span>
           {lesson.title.toUpperCase()}
         </h1>
-        <p className="text-lg text-surface-500">{lesson.subtitle}</p>
+        <p className="text-base sm:text-lg text-surface-500">{lesson.subtitle}</p>
       </header>
 
       {/* Timer */}
@@ -255,7 +252,7 @@ export default function LessonView() {
         {prevLesson ? (
           <Link
             to={`/lezione/${prevLesson.day}`}
-            className="inline-flex items-center gap-2 text-sm text-surface-400 hover:text-surface-600 transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-surface-400 hover:text-surface-600 transition-colors py-3 pr-3 min-h-[44px]"
           >
             <ArrowLeft size={16} />
             <span>Giorno {prevLesson.day}</span>
@@ -266,13 +263,13 @@ export default function LessonView() {
         {nextLesson && nextUnlocked ? (
           <Link
             to={`/lezione/${nextLesson.day}`}
-            className="inline-flex items-center gap-2 text-sm text-brand-500 hover:text-brand-400 transition-colors font-medium"
+            className="inline-flex items-center gap-2 text-sm text-brand-500 hover:text-brand-400 transition-colors font-medium py-3 pl-3 min-h-[44px]"
           >
             <span>Giorno {nextLesson.day}</span>
             <ArrowRight size={16} />
           </Link>
         ) : nextLesson ? (
-          <span className="inline-flex items-center gap-2 text-sm text-surface-300">
+          <span className="inline-flex items-center gap-2 text-sm text-surface-300 py-3 pl-3">
             <span>Giorno {nextLesson.day}</span>
             <ArrowRight size={16} />
           </span>
