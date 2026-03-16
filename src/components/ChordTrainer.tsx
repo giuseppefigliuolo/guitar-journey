@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { Play, Pause, Settings, Shuffle, Volume2, VolumeX, Eye, EyeOff, History } from 'lucide-react'
+import { Play, Pause, Settings, Shuffle, Volume2, VolumeX, Eye, EyeOff, Music, Music2, History } from 'lucide-react'
 import { chordMap } from '../data/chords'
+import { playChordSound } from '../utils/audio'
 import ChordDiagram from './ChordDiagram'
 
 interface ChordTrainerProps {
@@ -58,7 +59,8 @@ export default function ChordTrainer({ chordIds }: ChordTrainerProps) {
   const [nextChord, setNextChord] = useState<string | null>(null)
   const [history, setHistory] = useState<string[]>([])
   const [voiceEnabled, setVoiceEnabled] = useState(true)
-  const [diagramVisible, setDiagramVisible] = useState(false)
+  const [diagramVisible, setDiagramVisible] = useState(true)
+  const [chordSoundEnabled, setChordSoundEnabled] = useState(true)
   const [flash, setFlash] = useState(false)
 
   const isPlayingRef = useRef(false)
@@ -97,9 +99,12 @@ export default function ChordTrainer({ chordIds }: ChordTrainerProps) {
     if (voiceEnabled) {
       setTimeout(() => speakChord(getChordLabel(chord)), 120)
     }
+    if (chordSoundEnabled) {
+      setTimeout(() => playChordSound(chord), voiceEnabled ? 600 : 200)
+    }
 
     timerRef.current = setTimeout(step, intervalRef.current * 1000)
-  }, [getRandomChord, voiceEnabled])
+  }, [getRandomChord, voiceEnabled, chordSoundEnabled])
 
   const start = useCallback(() => {
     isPlayingRef.current = true
@@ -133,14 +138,13 @@ export default function ChordTrainer({ chordIds }: ChordTrainerProps) {
     }
   }, [])
 
-  // Restart loop when voiceEnabled changes while playing
   useEffect(() => {
     if (isPlaying) {
       if (timerRef.current) clearTimeout(timerRef.current)
       timerRef.current = setTimeout(step, intervalRef.current * 1000)
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [voiceEnabled])
+  }, [voiceEnabled, chordSoundEnabled])
 
   if (chordIds.length < 2) return null
 
@@ -174,9 +178,20 @@ export default function ChordTrainer({ chordIds }: ChordTrainerProps) {
             title={voiceEnabled ? 'Disattiva voce' : 'Attiva voce'}
           >
             {voiceEnabled ? (
-              <Volume2 size={16} className="text-surface-400" />
+              <Volume2 size={16} className="text-brand-500" />
             ) : (
               <VolumeX size={16} className="text-surface-300" />
+            )}
+          </button>
+          <button
+            onClick={() => setChordSoundEnabled((v) => !v)}
+            className="p-2.5 -m-1 rounded-lg hover:bg-surface-100 transition-colors"
+            title={chordSoundEnabled ? 'Disattiva suono accordo' : 'Attiva suono accordo'}
+          >
+            {chordSoundEnabled ? (
+              <Music size={16} className="text-brand-500" />
+            ) : (
+              <Music2 size={16} className="text-surface-300" />
             )}
           </button>
         </div>
