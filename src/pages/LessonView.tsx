@@ -1,4 +1,4 @@
-import { useParams, useNavigate, Link } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { getLesson, lessons } from '../data/lessons'
 import { getChord } from '../data/chords'
 import { useProgress } from '../hooks/useProgress'
@@ -66,7 +66,6 @@ function parseDuration(dur: string): number {
 
 export default function LessonView() {
   const { day } = useParams<{ day: string }>()
-  const navigate = useNavigate()
   const { isLessonCompleted, completeLesson, uncompleteLesson, isLessonUnlocked } = useProgress()
 
   const dayNum = parseInt(day || '1', 10)
