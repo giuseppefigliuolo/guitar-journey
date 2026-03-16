@@ -7,7 +7,15 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "typecheck": "tsc --noEmit -p tsconfig.app.json",
+    "preview": "vite preview",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --max-warnings 0",
+      "bash -c 'tsc --noEmit -p tsconfig.app.json'"
+    ]
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.1",
