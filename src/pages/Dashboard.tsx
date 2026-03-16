@@ -29,20 +29,20 @@ export default function Dashboard() {
 
       {/* Stats */}
       <div className="grid grid-cols-3 gap-3 sm:gap-4 mb-10 animate-fade-in stagger-1">
-        <div className="bg-white rounded-2xl p-4 sm:p-5 border border-surface-200 text-center shadow-sm">
+        <div className="bg-white rounded-2xl p-4 sm:p-5 border border-surface-200 text-center shadow-sm overflow-hidden">
           <BookOpen size={20} className="mx-auto mb-2 text-brand-500" />
           <div className="text-2xl sm:text-3xl font-bold text-surface-900">{totalCompleted}</div>
-          <div className="text-xs sm:text-sm text-surface-400 mt-0.5">Lezioni completate</div>
+          <div className="text-xs sm:text-sm text-surface-400 mt-0.5 truncate">Lezioni completate</div>
         </div>
-        <div className="bg-white rounded-2xl p-4 sm:p-5 border border-surface-200 text-center shadow-sm">
+        <div className="bg-white rounded-2xl p-4 sm:p-5 border border-surface-200 text-center shadow-sm overflow-hidden">
           <Flame size={20} className="mx-auto mb-2 text-orange-500" />
           <div className="text-2xl sm:text-3xl font-bold text-surface-900">{progress.streak}</div>
-          <div className="text-xs sm:text-sm text-surface-400 mt-0.5">Giorni di fila</div>
+          <div className="text-xs sm:text-sm text-surface-400 mt-0.5 truncate">Giorni di fila</div>
         </div>
-        <div className="bg-white rounded-2xl p-4 sm:p-5 border border-surface-200 text-center shadow-sm">
+        <div className="bg-white rounded-2xl p-4 sm:p-5 border border-surface-200 text-center shadow-sm overflow-hidden">
           <Trophy size={20} className="mx-auto mb-2 text-yellow-500" />
           <div className="text-2xl sm:text-3xl font-bold text-surface-900">{progressPercent}%</div>
-          <div className="text-xs sm:text-sm text-surface-400 mt-0.5">Completamento</div>
+          <div className="text-xs sm:text-sm text-surface-400 mt-0.5 truncate">Completamento</div>
         </div>
       </div>
 
@@ -114,7 +114,7 @@ export default function Dashboard() {
                       key={lesson.id}
                       to={`/lezione/${lesson.day}`}
                       className={`
-                        flex items-center gap-3 sm:gap-4 p-3.5 sm:p-4 rounded-xl border transition-all duration-200
+                        flex items-center gap-3 sm:gap-4 p-3.5 sm:p-4 rounded-xl border transition-all duration-200 overflow-hidden
                         ${
                           completed
                             ? 'bg-white/60 border-surface-200 opacity-70 hover:opacity-100'
