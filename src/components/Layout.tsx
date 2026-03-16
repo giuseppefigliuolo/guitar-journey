@@ -1,9 +1,10 @@
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
-import { Home, BookOpen, Guitar } from 'lucide-react'
+import { Home, BookOpen, Dumbbell, Guitar } from 'lucide-react'
 
 const navItems = [
   { to: '/', label: 'Home', icon: Home },
+  { to: '/trainer', label: 'Trainer', icon: Dumbbell },
   { to: '/accordi', label: 'Accordi', icon: BookOpen },
 ]
 
