@@ -12,7 +12,7 @@ for (const chord of chords) {
     tokenMap.set(chord.id, chord)
 }
 
-const sortedTokens = [...tokenMap.keys()].sort((a, b) => b.length - a.length)
+const sortedTokens = Array.from(tokenMap.keys()).sort((a, b) => b.length - a.length)
 const escaped = sortedTokens.map((t) =>
   t.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&'),
 )
@@ -111,7 +111,7 @@ function ChordPopover({
   const [pos, setPos] = useState<'above' | 'below'>('above')
   const triggerRef = useRef<HTMLSpanElement>(null)
   const popoverRef = useRef<HTMLDivElement>(null)
-  const hoverTimeout = useRef<ReturnType<typeof setTimeout>>()
+  const hoverTimeout = useRef<ReturnType<typeof setTimeout>>(undefined)
 
   const show = () => {
     clearTimeout(hoverTimeout.current)
@@ -155,11 +155,10 @@ function ChordPopover({
         onClick={handleClick}
         onMouseEnter={show}
         onMouseLeave={delayedHide}
-        className={`cursor-pointer font-semibold border-b border-dashed transition-all duration-200 ${
-          highlighted
+        className={`cursor-pointer font-semibold border-b border-dashed transition-all duration-200 ${highlighted
             ? 'rounded px-1 -mx-0.5 scale-110 inline-block'
             : ''
-        }`}
+          }`}
         style={{
           color: chord.color,
           borderColor: `${chord.color}60`,
@@ -173,9 +172,8 @@ function ChordPopover({
           ref={popoverRef}
           onMouseEnter={() => clearTimeout(hoverTimeout.current)}
           onMouseLeave={delayedHide}
-          className={`absolute z-50 left-1/2 -translate-x-1/2 ${
-            pos === 'above' ? 'bottom-full mb-2' : 'top-full mt-2'
-          }`}
+          className={`absolute z-50 left-1/2 -translate-x-1/2 ${pos === 'above' ? 'bottom-full mb-2' : 'top-full mt-2'
+            }`}
         >
           <div className="bg-white rounded-xl border border-surface-200 shadow-xl p-2 animate-fade-in">
             <ChordDiagram chord={chord} size="sm" />
@@ -194,7 +192,7 @@ function ProgressionGroup({
   chordIds: string[]
 }) {
   const [playingIdx, setPlayingIdx] = useState(-1)
-  const timerRef = useRef<ReturnType<typeof setTimeout>>()
+  const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined)
   const stoppedRef = useRef(false)
 
   const playStep = useCallback(
@@ -251,11 +249,10 @@ function ProgressionGroup({
       })}
       <button
         onClick={isPlaying ? stop : play}
-        className={`inline-flex items-center justify-center w-6 h-6 rounded-full ml-1.5 align-middle transition-all ${
-          isPlaying
+        className={`inline-flex items-center justify-center w-6 h-6 rounded-full ml-1.5 align-middle transition-all ${isPlaying
             ? 'bg-red-100 text-red-500 hover:bg-red-200'
             : 'bg-brand-100 text-brand-600 hover:bg-brand-200'
-        }`}
+          }`}
         title={isPlaying ? 'Ferma' : 'Ascolta progressione'}
       >
         {isPlaying ? (
