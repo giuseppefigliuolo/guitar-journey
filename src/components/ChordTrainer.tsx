@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { Play, Pause, Settings, Shuffle, Volume2, VolumeX, History } from 'lucide-react'
+import { Play, Pause, Settings, Shuffle, Volume2, VolumeX, Eye, EyeOff, History } from 'lucide-react'
 import { chordMap } from '../data/chords'
+import ChordDiagram from './ChordDiagram'
 
 interface ChordTrainerProps {
   chordIds: string[]
@@ -57,6 +58,7 @@ export default function ChordTrainer({ chordIds }: ChordTrainerProps) {
   const [nextChord, setNextChord] = useState<string | null>(null)
   const [history, setHistory] = useState<string[]>([])
   const [voiceEnabled, setVoiceEnabled] = useState(true)
+  const [diagramVisible, setDiagramVisible] = useState(false)
   const [flash, setFlash] = useState(false)
 
   const isPlayingRef = useRef(false)
@@ -154,17 +156,30 @@ export default function ChordTrainer({ chordIds }: ChordTrainerProps) {
             Chord Trainer
           </span>
         </div>
-        <button
-          onClick={() => setVoiceEnabled((v) => !v)}
-          className="p-2.5 -m-1 rounded-lg hover:bg-surface-100 transition-colors"
-          title={voiceEnabled ? 'Disattiva voce' : 'Attiva voce'}
-        >
-          {voiceEnabled ? (
-            <Volume2 size={16} className="text-surface-400" />
-          ) : (
-            <VolumeX size={16} className="text-surface-300" />
-          )}
-        </button>
+        <div className="flex items-center gap-0.5">
+          <button
+            onClick={() => setDiagramVisible((v) => !v)}
+            className="p-2.5 -m-1 rounded-lg hover:bg-surface-100 transition-colors"
+            title={diagramVisible ? 'Nascondi diagramma' : 'Mostra diagramma'}
+          >
+            {diagramVisible ? (
+              <Eye size={16} className="text-brand-500" />
+            ) : (
+              <EyeOff size={16} className="text-surface-300" />
+            )}
+          </button>
+          <button
+            onClick={() => setVoiceEnabled((v) => !v)}
+            className="p-2.5 -m-1 rounded-lg hover:bg-surface-100 transition-colors"
+            title={voiceEnabled ? 'Disattiva voce' : 'Attiva voce'}
+          >
+            {voiceEnabled ? (
+              <Volume2 size={16} className="text-surface-400" />
+            ) : (
+              <VolumeX size={16} className="text-surface-300" />
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Current chord display */}
@@ -194,6 +209,11 @@ export default function ChordTrainer({ chordIds }: ChordTrainerProps) {
         >
           {currentChord ? getChordLabel(currentChord).toUpperCase() : 'PRONTO?'}
         </span>
+        {diagramVisible && currentChord && chordMap.get(currentChord) && (
+          <div className="mt-3 flex justify-center animate-fade-in">
+            <ChordDiagram chord={chordMap.get(currentChord)!} size="md" showName={false} />
+          </div>
+        )}
         <span className="text-xs text-surface-400 mt-2">
           {isPlaying ? 'Cambia accordo!' : 'Premi Inizia per partire'}
         </span>
