@@ -24,7 +24,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173).
+Open [https://github.com/giuseppefigliuolo/guitar-journey/deployments](https://github.com/giuseppefigliuolo/guitar-journey/deployments).
 
 ## Build
 
