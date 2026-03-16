@@ -7,6 +7,7 @@ import ChordDiagram from '../components/ChordDiagram'
 import ChordTrainer from '../components/ChordTrainer'
 import StrummingPattern from '../components/StrummingPattern'
 import LessonTimer from '../components/LessonTimer'
+import ChordText from '../components/ChordText'
 import {
   ArrowLeft,
   ArrowRight,
@@ -184,7 +185,7 @@ export default function LessonView() {
 
             {/* Section content */}
             <div className="text-surface-600 text-sm sm:text-base leading-relaxed whitespace-pre-line">
-              {section.content}
+              <ChordText text={section.content} />
             </div>
 
             {/* Chord diagrams */}

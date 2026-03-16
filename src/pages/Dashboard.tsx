@@ -3,7 +3,6 @@ import { weeks, getLessonsByWeek } from '../data/lessons'
 import { useProgress } from '../hooks/useProgress'
 import {
   CheckCircle2,
-  Lock,
   PlayCircle,
   Flame,
   BookOpen,
@@ -12,7 +11,7 @@ import {
 } from 'lucide-react'
 
 export default function Dashboard() {
-  const { isLessonCompleted, isLessonUnlocked, totalCompleted, progress } = useProgress()
+  const { isLessonCompleted, totalCompleted, progress } = useProgress()
 
   const progressPercent = Math.round((totalCompleted / 30) * 100)
 
@@ -107,14 +106,13 @@ export default function Dashboard() {
               <div className="grid gap-2.5 sm:gap-3">
                 {weekLessons.map((lesson) => {
                   const completed = isLessonCompleted(lesson.day)
-                  const unlocked = isLessonUnlocked(lesson.day)
                   const isCurrent =
-                    unlocked && !completed && lesson.day === progress.currentDay
+                    !completed && lesson.day === progress.currentDay
 
                   return (
                     <Link
                       key={lesson.id}
-                      to={unlocked ? `/lezione/${lesson.day}` : '#'}
+                      to={`/lezione/${lesson.day}`}
                       className={`
                         flex items-center gap-3 sm:gap-4 p-3.5 sm:p-4 rounded-xl border transition-all duration-200
                         ${
@@ -122,9 +120,7 @@ export default function Dashboard() {
                             ? 'bg-white/60 border-surface-200 opacity-70 hover:opacity-100'
                             : isCurrent
                               ? 'bg-white border-brand-300 shadow-md shadow-brand-500/10'
-                              : unlocked
-                                ? 'bg-white border-surface-200 hover:border-surface-300 hover:shadow-sm'
-                                : 'bg-surface-100/50 border-surface-200/50 opacity-40 cursor-not-allowed pointer-events-none'
+                              : 'bg-white border-surface-200 hover:border-surface-300 hover:shadow-sm'
                         }
                       `}
                     >
@@ -142,15 +138,13 @@ export default function Dashboard() {
                               className="text-brand-500"
                             />
                           </div>
-                        ) : unlocked ? (
+                        ) : (
                           <div
                             className="w-7 h-7 rounded-full border-2 flex items-center justify-center text-xs font-bold"
                             style={{ borderColor: week.color, color: week.color }}
                           >
                             {lesson.day}
                           </div>
-                        ) : (
-                          <Lock size={20} className="text-surface-300" />
                         )}
                       </div>
 
