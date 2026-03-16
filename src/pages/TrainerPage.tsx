@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState } from 'react'
 import { chords, type ChordData } from '../data/chords'
 import ChordDiagram from '../components/ChordDiagram'
 import ChordTrainer from '../components/ChordTrainer'
@@ -13,11 +13,13 @@ const typeGroups: { label: string; types: ChordData['type'][] }[] = [
 ]
 
 const presets: { label: string; ids: string[] }[] = [
+  { label: 'Sett. 1 — Basi', ids: ['A', 'Am', 'E', 'Em', 'D', 'Dm', 'C', 'G'] },
+  { label: 'Sett. 2 — Ritmo + Settime', ids: ['A', 'Am', 'E', 'Em', 'D', 'Dm', 'C', 'G', 'A7', 'D7', 'E7'] },
+  { label: 'Sett. 3 — WYWH', ids: ['C', 'D', 'Am', 'G', 'Em'] },
+  { label: 'Sett. 4 — Repertorio', ids: ['A', 'Am', 'E', 'Em', 'D', 'Dm', 'C', 'G', 'A7', 'D7', 'E7', 'Asus4', 'Dsus2', 'Dsus4'] },
   { label: 'Base (4 accordi)', ids: ['A', 'Am', 'E', 'Em'] },
-  { label: 'Tutti gli aperti', ids: ['A', 'Am', 'E', 'Em', 'D', 'Dm', 'C', 'G'] },
   { label: 'Rock classico', ids: ['Em', 'G', 'C', 'D', 'Am'] },
   { label: 'Progressione blues', ids: ['A7', 'D7', 'E7'] },
-  { label: 'Wish You Were Here', ids: ['C', 'D', 'Am', 'G'] },
   { label: 'Accordi sospesi', ids: ['A', 'Asus4', 'D', 'Dsus2', 'Dsus4'] },
   { label: 'Tutto!', ids: chords.map((c) => c.id) },
 ]
@@ -44,19 +46,17 @@ export default function TrainerPage() {
   const selectAll = () => setSelectedIds(new Set(chords.map((c) => c.id)))
   const selectNone = () => setSelectedIds(new Set())
 
-  const activeIds = useMemo(() => {
-    if (randomMode) {
-      const count = Math.max(2, Math.min(selectedIds.size, 6))
-      const pool = chords.map((c) => c.id)
-      const shuffled = [...pool].sort(() => Math.random() - 0.5)
-      return shuffled.slice(0, count)
-    }
-    return Array.from(selectedIds)
-  }, [selectedIds, randomMode])
+  const [randomIds, setRandomIds] = useState<string[]>([])
+
+  const activeIds = randomMode ? randomIds : Array.from(selectedIds)
 
   const [trainerKey, setTrainerKey] = useState(0)
 
   const startRandomRound = () => {
+    const count = Math.max(2, Math.min(selectedIds.size, 6))
+    const pool = chords.map((c) => c.id)
+    const shuffled = [...pool].sort(() => Math.random() - 0.5)
+    setRandomIds(shuffled.slice(0, count))
     setRandomMode(true)
     setTrainerKey((k) => k + 1)
   }
